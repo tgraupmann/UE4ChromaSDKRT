@@ -6,7 +6,7 @@
 #include "ChromaSDKPluginAnimation1DObject.h"
 #include "ChromaSDKPluginAnimation2DObject.h"
 
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 
 #include "AllowWindowsPlatformTypes.h" 
 
@@ -33,7 +33,7 @@ UChromaSDKPluginBPLibrary::UChromaSDKPluginBPLibrary(const FPostConstructInitial
 //UChromaSDKPluginBPLibrary::UChromaSDKPluginBPLibrary(const FObjectInitializer& ObjectInitializer) //___HACK_UE4_VERSION_4_9_OR_GREATER
 //	: Super(ObjectInitializer) //___HACK_UE4_VERSION_4_9_OR_GREATER
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	// fkey mapping
 	_sKeyboardFKeyMap[EKeys::Escape] = EChromaSDKKeyboardKey::KK_ESC;
 	_sKeyboardFKeyMap[EKeys::F1] = EChromaSDKKeyboardKey::KK_F1;
@@ -301,7 +301,7 @@ UChromaSDKPluginBPLibrary::UChromaSDKPluginBPLibrary(const FPostConstructInitial
 
 bool UChromaSDKPluginBPLibrary::IsPlatformWindows()
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	return true;
 #else
 	return false;
@@ -310,7 +310,7 @@ bool UChromaSDKPluginBPLibrary::IsPlatformWindows()
 
 int32 UChromaSDKPluginBPLibrary::GetMaxLeds(EChromaSDKDevice1DEnum::Type device)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	switch (device)
 	{
 	case EChromaSDKDevice1DEnum::DE_ChromaLink:
@@ -326,7 +326,7 @@ int32 UChromaSDKPluginBPLibrary::GetMaxLeds(EChromaSDKDevice1DEnum::Type device)
 
 int UChromaSDKPluginBPLibrary::GetMaxRow(EChromaSDKDevice2DEnum::Type device)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	switch (device)
 	{
 	case EChromaSDKDevice2DEnum::DE_Keyboard:
@@ -343,7 +343,7 @@ int UChromaSDKPluginBPLibrary::GetMaxRow(EChromaSDKDevice2DEnum::Type device)
 int UChromaSDKPluginBPLibrary::GetMaxColumn(EChromaSDKDevice2DEnum::Type device)
 {
 	int result = 0;
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	switch (device)
 	{
 	case EChromaSDKDevice2DEnum::DE_Keyboard:
@@ -398,7 +398,7 @@ FLinearColor UChromaSDKPluginBPLibrary::LerpColor(FLinearColor colorParam1, FLin
 TArray<FLinearColor> UChromaSDKPluginBPLibrary::CreateColors1D(EChromaSDKDevice1DEnum::Type device)
 {
 	TArray<FLinearColor> colors = TArray<FLinearColor>();
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	int elements = GetMaxLeds(device);
 	for (int i = 0; i < elements; ++i)
 	{
@@ -412,7 +412,7 @@ TArray<FLinearColor> UChromaSDKPluginBPLibrary::CreateColors1D(EChromaSDKDevice1
 TArray<FChromaSDKColors> UChromaSDKPluginBPLibrary::CreateColors2D(EChromaSDKDevice2DEnum::Type device)
 {
 	TArray<FChromaSDKColors> result = TArray<FChromaSDKColors>();
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	int maxRows = GetMaxRow(device);
 	int maxColumns = GetMaxColumn(device);
 	for (int i = 0; i < maxRows; ++i)
@@ -434,7 +434,7 @@ TArray<FChromaSDKColors> UChromaSDKPluginBPLibrary::CreateColors2D(EChromaSDKDev
 TArray<FLinearColor> UChromaSDKPluginBPLibrary::CreateRandomColors1D(EChromaSDKDevice1DEnum::Type device)
 {
 	TArray<FLinearColor> colors = TArray<FLinearColor>();
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	int elements = GetMaxLeds(device);
 	for (int i = 0; i < elements; ++i)
 	{
@@ -452,7 +452,7 @@ TArray<FLinearColor> UChromaSDKPluginBPLibrary::CreateRandomColors1D(EChromaSDKD
 TArray<FChromaSDKColors> UChromaSDKPluginBPLibrary::CreateRandomColors2D(EChromaSDKDevice2DEnum::Type device)
 {
 	TArray<FChromaSDKColors> result = TArray<FChromaSDKColors>();
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	int maxRows = GetMaxRow(device);
 	int maxColumns = GetMaxColumn(device);
 	for (int i = 0; i < maxRows; ++i)
@@ -478,7 +478,7 @@ TArray<FChromaSDKColors> UChromaSDKPluginBPLibrary::CreateRandomColors2D(EChroma
 TArray<FLinearColor> UChromaSDKPluginBPLibrary::CreateRandomColorsBlackAndWhite1D(EChromaSDKDevice1DEnum::Type device)
 {
 	TArray<FLinearColor> colors = TArray<FLinearColor>();
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	int elements = GetMaxLeds(device);
 	for (int i = 0; i < elements; ++i)
 	{
@@ -494,7 +494,7 @@ TArray<FLinearColor> UChromaSDKPluginBPLibrary::CreateRandomColorsBlackAndWhite1
 TArray<FChromaSDKColors> UChromaSDKPluginBPLibrary::CreateRandomColorsBlackAndWhite2D(EChromaSDKDevice2DEnum::Type device)
 {
 	TArray<FChromaSDKColors> result = TArray<FChromaSDKColors>();
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	int maxRows = GetMaxRow(device);
 	int maxColumns = GetMaxColumn(device);
 	for (int i = 0; i < maxRows; ++i)
@@ -515,7 +515,7 @@ TArray<FChromaSDKColors> UChromaSDKPluginBPLibrary::CreateRandomColorsBlackAndWh
 
 void UChromaSDKPluginBPLibrary::SetKeyboardKeyColor(EChromaSDKKeyboardKey::Type key, const FLinearColor& colorParam, TArray<FChromaSDKColors>& colors)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	int maxRow = ChromaSDK::Keyboard::MAX_ROW;
 	int maxColumn = ChromaSDK::Keyboard::MAX_COLUMN;
 	if (maxRow != colors.Num() ||
@@ -540,7 +540,7 @@ void UChromaSDKPluginBPLibrary::SetKeyboardKeyColor(EChromaSDKKeyboardKey::Type 
 
 FLinearColor UChromaSDKPluginBPLibrary::GetKeyboardKeyColor(EChromaSDKKeyboardKey::Type key, TArray<FChromaSDKColors>& colors)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	int maxRow = ChromaSDK::Keyboard::MAX_ROW;
 	int maxColumn = ChromaSDK::Keyboard::MAX_COLUMN;
 	if (maxRow != colors.Num() ||
@@ -566,7 +566,7 @@ FLinearColor UChromaSDKPluginBPLibrary::GetKeyboardKeyColor(EChromaSDKKeyboardKe
 
 void UChromaSDKPluginBPLibrary::SetMouseLedColor(EChromaSDKMouseLed::Type led, const FLinearColor& colorParam, TArray<FChromaSDKColors>& colors)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	int maxRow = ChromaSDK::Mouse::MAX_ROW;
 	int maxColumn = ChromaSDK::Mouse::MAX_COLUMN;
 	if (maxRow != colors.Num() ||
@@ -588,7 +588,7 @@ void UChromaSDKPluginBPLibrary::SetMouseLedColor(EChromaSDKMouseLed::Type led, c
 
 FLinearColor UChromaSDKPluginBPLibrary::GetMouseLedColor(EChromaSDKMouseLed::Type led, TArray<FChromaSDKColors>& colors)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	int maxRow = ChromaSDK::Mouse::MAX_ROW;
 	int maxColumn = ChromaSDK::Mouse::MAX_COLUMN;
 	if (maxRow != colors.Num() ||
@@ -611,7 +611,7 @@ FLinearColor UChromaSDKPluginBPLibrary::GetMouseLedColor(EChromaSDKMouseLed::Typ
 
 bool UChromaSDKPluginBPLibrary::IsInitialized()
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	return _sIChromaSDKPlugin.IsInitialized();
 #else
 	return false;
@@ -620,7 +620,7 @@ bool UChromaSDKPluginBPLibrary::IsInitialized()
 
 int32 UChromaSDKPluginBPLibrary::ChromaSDKInit()
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	if (!_sIChromaSDKPlugin.IsInitialized())
 	{
 		// Init the SDK
@@ -638,7 +638,7 @@ int32 UChromaSDKPluginBPLibrary::ChromaSDKInit()
 
 int32 UChromaSDKPluginBPLibrary::ChromaSDKUnInit()
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	// unload any 1D animation effects
 	for (TObjectIterator<UChromaSDKPluginAnimation1DObject> iterator; iterator; ++iterator)
 	{
@@ -681,7 +681,7 @@ FChromaSDKEffectResult UChromaSDKPluginBPLibrary::ChromaSDKCreateEffectNone(EChr
 {
 	FChromaSDKEffectResult data = FChromaSDKEffectResult();
 
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 
 	int result = 0;
 	RZEFFECTID effectId = RZEFFECTID();
@@ -721,7 +721,7 @@ FChromaSDKEffectResult UChromaSDKPluginBPLibrary::ChromaSDKCreateEffectStatic(EC
 {
 	FChromaSDKEffectResult data = FChromaSDKEffectResult();
 
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 
 	//UE_LOG(LogTemp, Log, TEXT("ChromaSDKPlugin:: Color R=%f G=%f B=%f"), color.R, color.G, color.B);	
 	int red = colorParam.R * 255;
@@ -791,7 +791,7 @@ FChromaSDKEffectResult UChromaSDKPluginBPLibrary::ChromaSDKCreateEffectCustom1D(
 {
 	FChromaSDKEffectResult data = FChromaSDKEffectResult();
 
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 
 	int result = 0;
 	RZEFFECTID effectId = RZEFFECTID();
@@ -880,7 +880,7 @@ FChromaSDKEffectResult UChromaSDKPluginBPLibrary::ChromaSDKCreateEffectCustom2D(
 {
 	FChromaSDKEffectResult data = FChromaSDKEffectResult();
 
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 
 	int result = 0;
 	RZEFFECTID effectId = RZEFFECTID();
@@ -997,7 +997,7 @@ FChromaSDKEffectResult UChromaSDKPluginBPLibrary::ChromaSDKCreateEffectKeyboardC
 {
 	FChromaSDKEffectResult data = FChromaSDKEffectResult();
 
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 
 	int result = 0;
 	RZEFFECTID effectId = RZEFFECTID();
@@ -1039,7 +1039,7 @@ FChromaSDKEffectResult UChromaSDKPluginBPLibrary::ChromaSDKCreateEffectKeyboardC
 
 int UChromaSDKPluginBPLibrary::ChromaSDKSetEffect(const FChromaSDKGuid& effectId)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	return _sIChromaSDKPlugin.ChromaSDKSetEffect(effectId.Data);
 #else
 	return -1;
@@ -1048,7 +1048,7 @@ int UChromaSDKPluginBPLibrary::ChromaSDKSetEffect(const FChromaSDKGuid& effectId
 
 int UChromaSDKPluginBPLibrary::ChromaSDKDeleteEffect(const FChromaSDKGuid& effectId)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	return _sIChromaSDKPlugin.ChromaSDKDeleteEffect(effectId.Data);
 #else
 	return -1;
@@ -1057,7 +1057,7 @@ int UChromaSDKPluginBPLibrary::ChromaSDKDeleteEffect(const FChromaSDKGuid& effec
 
 int UChromaSDKPluginBPLibrary::GetAnimation(const FString& animationName)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -1077,7 +1077,7 @@ int UChromaSDKPluginBPLibrary::GetAnimation(const FString& animationName)
 
 int UChromaSDKPluginBPLibrary::GetAnimationId(const FString& animationName)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -1097,7 +1097,7 @@ int UChromaSDKPluginBPLibrary::GetAnimationId(const FString& animationName)
 
 FString UChromaSDKPluginBPLibrary::GetAnimationName(const int animationId)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString result = _sIChromaSDKPlugin.GetAnimationName(animationId);
 	return result;
 #else
@@ -1107,14 +1107,14 @@ FString UChromaSDKPluginBPLibrary::GetAnimationName(const int animationId)
 
 void UChromaSDKPluginBPLibrary::LoadAnimation(const int animationId)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.LoadAnimation(animationId);
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::LoadAnimationName(const FString& animationName)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -1132,14 +1132,14 @@ void UChromaSDKPluginBPLibrary::LoadAnimationName(const FString& animationName)
 
 void UChromaSDKPluginBPLibrary::CloseAnimation(const int animationId)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.CloseAnimation(animationId);
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::CloseAnimationName(const FString& animationName)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -1157,14 +1157,14 @@ void UChromaSDKPluginBPLibrary::CloseAnimationName(const FString& animationName)
 
 void UChromaSDKPluginBPLibrary::UnloadAnimation(const int animationId)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	return _sIChromaSDKPlugin.UnloadAnimation(animationId);
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::UnloadAnimationName(const FString& animationName)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -1182,7 +1182,7 @@ void UChromaSDKPluginBPLibrary::UnloadAnimationName(const FString& animationName
 
 void UChromaSDKPluginBPLibrary::PlayAnimation(const FString& animationName, bool loop)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -1201,7 +1201,7 @@ void UChromaSDKPluginBPLibrary::PlayAnimation(const FString& animationName, bool
 
 void UChromaSDKPluginBPLibrary::PlayAnimationName(const FString& animationName, bool loop)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -1220,7 +1220,7 @@ void UChromaSDKPluginBPLibrary::PlayAnimationName(const FString& animationName, 
 
 void UChromaSDKPluginBPLibrary::StopAnimation(const FString& animationName)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -1238,7 +1238,7 @@ void UChromaSDKPluginBPLibrary::StopAnimation(const FString& animationName)
 
 void UChromaSDKPluginBPLibrary::StopAnimationType(EChromaSDKDeviceEnum::Type device)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	switch (device)
 	{
 	case EChromaSDKDeviceEnum::DE_ChromaLink:
@@ -1265,7 +1265,7 @@ void UChromaSDKPluginBPLibrary::StopAnimationType(EChromaSDKDeviceEnum::Type dev
 
 void UChromaSDKPluginBPLibrary::StopAll()
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	StopAnimationType(EChromaSDKDeviceEnum::DE_ChromaLink);
 	StopAnimationType(EChromaSDKDeviceEnum::DE_Headset);
 	StopAnimationType(EChromaSDKDeviceEnum::DE_Keyboard);
@@ -1277,7 +1277,7 @@ void UChromaSDKPluginBPLibrary::StopAll()
 
 void UChromaSDKPluginBPLibrary::ClearAnimationType(EChromaSDKDeviceEnum::Type device)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	StopAnimationType(device);
 
 	FChromaSDKEffectResult result = ChromaSDKCreateEffectNone(device);
@@ -1291,7 +1291,7 @@ void UChromaSDKPluginBPLibrary::ClearAnimationType(EChromaSDKDeviceEnum::Type de
 
 void UChromaSDKPluginBPLibrary::ClearAll()
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	ClearAnimationType(EChromaSDKDeviceEnum::DE_ChromaLink);
 	ClearAnimationType(EChromaSDKDeviceEnum::DE_Headset);
 	ClearAnimationType(EChromaSDKDeviceEnum::DE_Keyboard);
@@ -1303,7 +1303,7 @@ void UChromaSDKPluginBPLibrary::ClearAll()
 
 int UChromaSDKPluginBPLibrary::GetAnimationCount()
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	return _sIChromaSDKPlugin.GetAnimationCount();
 #else
 	return -1;
@@ -1312,7 +1312,7 @@ int UChromaSDKPluginBPLibrary::GetAnimationCount()
 
 int UChromaSDKPluginBPLibrary::GetAnimationIdByIndex(int index)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	return _sIChromaSDKPlugin.GetAnimationId(index);
 #else
 	return -1;
@@ -1321,7 +1321,7 @@ int UChromaSDKPluginBPLibrary::GetAnimationIdByIndex(int index)
 
 int UChromaSDKPluginBPLibrary::GetPlayingAnimationCount()
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	return _sIChromaSDKPlugin.GetPlayingAnimationCount();
 #else
 	return -1;
@@ -1330,7 +1330,7 @@ int UChromaSDKPluginBPLibrary::GetPlayingAnimationCount()
 
 int UChromaSDKPluginBPLibrary::GetPlayingAnimationId(int index)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	return _sIChromaSDKPlugin.GetPlayingAnimationId(index);
 #else
 	return -1;
@@ -1339,7 +1339,7 @@ int UChromaSDKPluginBPLibrary::GetPlayingAnimationId(int index)
 
 bool UChromaSDKPluginBPLibrary::IsAnimationPlaying(const FString& animationName)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -1360,7 +1360,7 @@ bool UChromaSDKPluginBPLibrary::IsAnimationPlaying(const FString& animationName)
 
 bool UChromaSDKPluginBPLibrary::IsAnimationTypePlaying(EChromaSDKDeviceEnum::Type device)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	switch (device)
 	{
 	case EChromaSDKDeviceEnum::DE_ChromaLink:
@@ -1418,7 +1418,7 @@ void UChromaSDKPluginBPLibrary::StopAnimationComposite(const FString& animationN
 
 FLinearColor UChromaSDKPluginBPLibrary::GetKeyColor(int animationId, int frameIndex, EChromaSDKKeyboardKey::Type key)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	int rzkey = _sKeyboardEnumMap[key];
 	if (rzkey != ChromaSDK::Keyboard::RZKEY::RZKEY_INVALID)
 	{
@@ -1431,7 +1431,7 @@ FLinearColor UChromaSDKPluginBPLibrary::GetKeyColor(int animationId, int frameIn
 
 FLinearColor UChromaSDKPluginBPLibrary::GetKeyColorName(const FString& animationName, const int frameIndex, EChromaSDKKeyboardKey::Type key)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -1456,7 +1456,7 @@ FLinearColor UChromaSDKPluginBPLibrary::GetKeyColorName(const FString& animation
 
 void UChromaSDKPluginBPLibrary::SetKeyColor(int animationId, int frameIndex, EChromaSDKKeyboardKey::Type key, const FLinearColor& colorParam)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	int rzkey = _sKeyboardEnumMap[key];
 	if (rzkey != ChromaSDK::Keyboard::RZKEY::RZKEY_INVALID)
 	{
@@ -1467,7 +1467,7 @@ void UChromaSDKPluginBPLibrary::SetKeyColor(int animationId, int frameIndex, ECh
 
 void UChromaSDKPluginBPLibrary::SetKeyColorName(const FString& animationName, const int frameIndex, EChromaSDKKeyboardKey::Type key, const FLinearColor& colorParam)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -1490,7 +1490,7 @@ void UChromaSDKPluginBPLibrary::SetKeyColorName(const FString& animationName, co
 
 void UChromaSDKPluginBPLibrary::SetKeyNonZeroColor(int animationId, int frameIndex, EChromaSDKKeyboardKey::Type key, const FLinearColor& colorParam)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	int rzkey = _sKeyboardEnumMap[key];
 	if (rzkey != ChromaSDK::Keyboard::RZKEY::RZKEY_INVALID)
 	{
@@ -1501,7 +1501,7 @@ void UChromaSDKPluginBPLibrary::SetKeyNonZeroColor(int animationId, int frameInd
 
 void UChromaSDKPluginBPLibrary::SetKeyNonZeroColorName(const FString& animationName, const int frameIndex, EChromaSDKKeyboardKey::Type key, const FLinearColor& colorParam)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -1524,7 +1524,7 @@ void UChromaSDKPluginBPLibrary::SetKeyNonZeroColorName(const FString& animationN
 
 void UChromaSDKPluginBPLibrary::SetKeysColor(int animationId, int frameIndex, const TArray<TEnumAsByte<EChromaSDKKeyboardKey::Type>>& keys, const FLinearColor& colorParam)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	int colorArg = IChromaSDKPlugin::ToBGR(colorParam);
 	for (int k = 0; k < keys.Num(); ++k)
 	{
@@ -1540,7 +1540,7 @@ void UChromaSDKPluginBPLibrary::SetKeysColor(int animationId, int frameIndex, co
 
 void UChromaSDKPluginBPLibrary::SetKeysColorName(const FString& animationName, const int frameIndex, const TArray<TEnumAsByte<EChromaSDKKeyboardKey::Type>>& keys, const FLinearColor& colorParam)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -1568,7 +1568,7 @@ void UChromaSDKPluginBPLibrary::SetKeysColorName(const FString& animationName, c
 
 void UChromaSDKPluginBPLibrary::SetKeysColorRGB(int animationId, int frameIndex, const TArray<TEnumAsByte<EChromaSDKKeyboardKey::Type>>& keys, int red, int green, int blue)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	int colorArg = IChromaSDKPlugin::GetRGB(red, green, blue);
 	for (int k = 0; k < keys.Num(); ++k)
 	{
@@ -1584,7 +1584,7 @@ void UChromaSDKPluginBPLibrary::SetKeysColorRGB(int animationId, int frameIndex,
 
 void UChromaSDKPluginBPLibrary::SetKeysColorRGBName(const FString& animationName, const int frameIndex, const TArray<TEnumAsByte<EChromaSDKKeyboardKey::Type>>& keys, int red, int green, int blue)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -1612,7 +1612,7 @@ void UChromaSDKPluginBPLibrary::SetKeysColorRGBName(const FString& animationName
 
 void UChromaSDKPluginBPLibrary::SetKeysNonZeroColor(int animationId, int frameIndex, const TArray<TEnumAsByte<EChromaSDKKeyboardKey::Type>>& keys, const FLinearColor& colorParam)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	int colorArg = IChromaSDKPlugin::ToBGR(colorParam);
 	for (int k = 0; k < keys.Num(); ++k)
 	{
@@ -1628,7 +1628,7 @@ void UChromaSDKPluginBPLibrary::SetKeysNonZeroColor(int animationId, int frameIn
 
 void UChromaSDKPluginBPLibrary::SetKeysNonZeroColorName(const FString& animationName, const int frameIndex, const TArray<TEnumAsByte<EChromaSDKKeyboardKey::Type>>& keys, const FLinearColor& colorParam)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -1656,7 +1656,7 @@ void UChromaSDKPluginBPLibrary::SetKeysNonZeroColorName(const FString& animation
 
 void UChromaSDKPluginBPLibrary::SetKeyColorAllFrames(int animationId, EChromaSDKKeyboardKey::Type key, const FLinearColor& colorParam)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	int rzkey = _sKeyboardEnumMap[key];
 	if (rzkey != ChromaSDK::Keyboard::RZKEY::RZKEY_INVALID)
 	{
@@ -1672,7 +1672,7 @@ void UChromaSDKPluginBPLibrary::SetKeyColorAllFrames(int animationId, EChromaSDK
 
 void UChromaSDKPluginBPLibrary::SetKeyColorAllFramesName(const FString& animationName, EChromaSDKKeyboardKey::Type key, const FLinearColor& colorParam)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -1700,7 +1700,7 @@ void UChromaSDKPluginBPLibrary::SetKeyColorAllFramesName(const FString& animatio
 
 void UChromaSDKPluginBPLibrary::SetKeyNonZeroColorAllFrames(int animationId, EChromaSDKKeyboardKey::Type key, const FLinearColor& colorParam)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	int rzkey = _sKeyboardEnumMap[key];
 	if (rzkey != ChromaSDK::Keyboard::RZKEY::RZKEY_INVALID)
 	{
@@ -1716,7 +1716,7 @@ void UChromaSDKPluginBPLibrary::SetKeyNonZeroColorAllFrames(int animationId, ECh
 
 void UChromaSDKPluginBPLibrary::SetKeyNonZeroColorAllFramesName(const FString& animationName, EChromaSDKKeyboardKey::Type key, const FLinearColor& colorParam)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -1744,7 +1744,7 @@ void UChromaSDKPluginBPLibrary::SetKeyNonZeroColorAllFramesName(const FString& a
 
 void UChromaSDKPluginBPLibrary::SetKeysColorAllFrames(int animationId, const TArray<TEnumAsByte<EChromaSDKKeyboardKey::Type>>& keys, const FLinearColor& colorParam)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	int frameCount = _sIChromaSDKPlugin.GetAnimationFrameCount(animationId);
 	int colorArg = IChromaSDKPlugin::ToBGR(colorParam);
 	for (int k = 0; k < keys.Num(); ++k)
@@ -1764,7 +1764,7 @@ void UChromaSDKPluginBPLibrary::SetKeysColorAllFrames(int animationId, const TAr
 
 void UChromaSDKPluginBPLibrary::SetKeysColorAllFramesName(const FString& animationName, const TArray<TEnumAsByte<EChromaSDKKeyboardKey::Type>>& keys, const FLinearColor& colorParam)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -1796,7 +1796,7 @@ void UChromaSDKPluginBPLibrary::SetKeysColorAllFramesName(const FString& animati
 
 void UChromaSDKPluginBPLibrary::SetKeysColorAllFramesRGB(int animationId, const TArray<TEnumAsByte<EChromaSDKKeyboardKey::Type>>& keys, int32 red, int32 green, int32 blue)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	int frameCount = _sIChromaSDKPlugin.GetAnimationFrameCount(animationId);
 	int colorArg = IChromaSDKPlugin::GetRGB(red, green, blue);
 	for (int k = 0; k < keys.Num(); ++k)
@@ -1816,7 +1816,7 @@ void UChromaSDKPluginBPLibrary::SetKeysColorAllFramesRGB(int animationId, const 
 
 void UChromaSDKPluginBPLibrary::SetKeysColorAllFramesRGBName(const FString& animationName, const TArray<TEnumAsByte<EChromaSDKKeyboardKey::Type>>& keys, int32 red, int32 green, int32 blue)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -1848,7 +1848,7 @@ void UChromaSDKPluginBPLibrary::SetKeysColorAllFramesRGBName(const FString& anim
 
 void UChromaSDKPluginBPLibrary::SetKeysNonZeroColorAllFrames(int animationId, const TArray<TEnumAsByte<EChromaSDKKeyboardKey::Type>>& keys, const FLinearColor& colorParam)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	int frameCount = _sIChromaSDKPlugin.GetAnimationFrameCount(animationId);
 	int colorArg = IChromaSDKPlugin::ToBGR(colorParam);
 	for (int k = 0; k < keys.Num(); ++k)
@@ -1868,7 +1868,7 @@ void UChromaSDKPluginBPLibrary::SetKeysNonZeroColorAllFrames(int animationId, co
 
 void UChromaSDKPluginBPLibrary::SetKeysNonZeroColorAllFramesName(const FString& animationName, const TArray<TEnumAsByte<EChromaSDKKeyboardKey::Type>>& keys, const FLinearColor& colorParam)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -1900,7 +1900,7 @@ void UChromaSDKPluginBPLibrary::SetKeysNonZeroColorAllFramesName(const FString& 
 
 void UChromaSDKPluginBPLibrary::CopyKeyColor(int sourceAnimationId, int targetAnimationId, int frameIndex, EChromaSDKKeyboardKey::Type key)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	int rzkey = _sKeyboardEnumMap[key];
 	if (rzkey != ChromaSDK::Keyboard::RZKEY::RZKEY_INVALID)
 	{
@@ -1911,7 +1911,7 @@ void UChromaSDKPluginBPLibrary::CopyKeyColor(int sourceAnimationId, int targetAn
 
 void UChromaSDKPluginBPLibrary::CopyKeyColorName(const FString& sourceAnimationName, const FString& targetAnimationName, const int frameIndex, EChromaSDKKeyboardKey::Type key)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString sourcePath = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString sourcePath = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (sourceAnimationName.EndsWith(".chroma"))
@@ -1944,7 +1944,7 @@ void UChromaSDKPluginBPLibrary::CopyKeyColorName(const FString& sourceAnimationN
 
 void UChromaSDKPluginBPLibrary::CopyKeysColor(int sourceAnimationId, int targetAnimationId, int frameIndex, const TArray<TEnumAsByte<EChromaSDKKeyboardKey::Type>>& keys)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	for (int k = 0; k < keys.Num(); ++k)
 	{
 		EChromaSDKKeyboardKey::Type key = keys[k];
@@ -1959,7 +1959,7 @@ void UChromaSDKPluginBPLibrary::CopyKeysColor(int sourceAnimationId, int targetA
 
 void UChromaSDKPluginBPLibrary::CopyKeysColorName(const FString& sourceAnimationName, const FString& targetAnimationName, const int frameIndex, const TArray<TEnumAsByte<EChromaSDKKeyboardKey::Type>>& keys)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString sourcePath = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString sourcePath = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (sourceAnimationName.EndsWith(".chroma"))
@@ -1996,7 +1996,7 @@ void UChromaSDKPluginBPLibrary::CopyKeysColorName(const FString& sourceAnimation
 
 void UChromaSDKPluginBPLibrary::CopyKeysColorAllFrames(int sourceAnimationId, int targetAnimationId, const TArray<TEnumAsByte<EChromaSDKKeyboardKey::Type>>& keys)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	int frameCount = _sIChromaSDKPlugin.GetAnimationFrameCount(targetAnimationId);
 	for (int k = 0; k < keys.Num(); ++k)
 	{
@@ -2015,7 +2015,7 @@ void UChromaSDKPluginBPLibrary::CopyKeysColorAllFrames(int sourceAnimationId, in
 
 void UChromaSDKPluginBPLibrary::CopyKeysColorAllFramesName(const FString& sourceAnimationName, const FString& targetAnimationName, const TArray<TEnumAsByte<EChromaSDKKeyboardKey::Type>>& keys)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString sourcePath = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString sourcePath = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (sourceAnimationName.EndsWith(".chroma"))
@@ -2058,14 +2058,14 @@ void UChromaSDKPluginBPLibrary::CopyKeysColorAllFramesName(const FString& source
 
 void UChromaSDKPluginBPLibrary::CopyAllKeys(int32 sourceAnimationId, int32 targetAnimationId, int32 frameIndex)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.CopyAllKeys(sourceAnimationId, targetAnimationId, frameIndex);
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::CopyAllKeysName(const FString& sourceAnimationName, const FString& targetAnimationName, int32 frameIndex)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString sourcePath = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString sourcePath = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (sourceAnimationName.EndsWith(".chroma"))
@@ -2096,14 +2096,14 @@ void UChromaSDKPluginBPLibrary::CopyAllKeysName(const FString& sourceAnimationNa
 
 void UChromaSDKPluginBPLibrary::CopyNonZeroAllKeys(int32 sourceAnimationId, int32 targetAnimationId, int32 frameIndex)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.CopyNonZeroAllKeys(sourceAnimationId, targetAnimationId, frameIndex);
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::CopyNonZeroAllKeysName(const FString& sourceAnimationName, const FString& targetAnimationName, int32 frameIndex)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString sourcePath = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString sourcePath = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (sourceAnimationName.EndsWith(".chroma"))
@@ -2134,14 +2134,14 @@ void UChromaSDKPluginBPLibrary::CopyNonZeroAllKeysName(const FString& sourceAnim
 
 void UChromaSDKPluginBPLibrary::AddNonZeroAllKeys(int32 sourceAnimationId, int32 targetAnimationId, int32 frameIndex)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.AddNonZeroAllKeys(sourceAnimationId, targetAnimationId, frameIndex);
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::AddNonZeroAllKeysName(const FString& sourceAnimationName, const FString& targetAnimationName, int32 frameIndex)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString sourcePath = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString sourcePath = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (sourceAnimationName.EndsWith(".chroma"))
@@ -2172,14 +2172,14 @@ void UChromaSDKPluginBPLibrary::AddNonZeroAllKeysName(const FString& sourceAnima
 
 void UChromaSDKPluginBPLibrary::SubtractNonZeroAllKeys(int32 sourceAnimationId, int32 targetAnimationId, int32 frameIndex)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.SubtractNonZeroAllKeys(sourceAnimationId, targetAnimationId, frameIndex);
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::SubtractNonZeroAllKeysName(const FString& sourceAnimationName, const FString& targetAnimationName, int32 frameIndex)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString sourcePath = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString sourcePath = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (sourceAnimationName.EndsWith(".chroma"))
@@ -2210,14 +2210,14 @@ void UChromaSDKPluginBPLibrary::SubtractNonZeroAllKeysName(const FString& source
 
 void UChromaSDKPluginBPLibrary::CopyNonZeroAllKeysOffset(int32 sourceAnimationId, int32 targetAnimationId, int32 frameIndex, int32 offset)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.CopyNonZeroAllKeysOffset(sourceAnimationId, targetAnimationId, frameIndex, offset);
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::CopyNonZeroAllKeysOffsetName(const FString& sourceAnimationName, const FString& targetAnimationName, int32 frameIndex, int32 offset)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString sourcePath = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString sourcePath = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (sourceAnimationName.EndsWith(".chroma"))
@@ -2248,7 +2248,7 @@ void UChromaSDKPluginBPLibrary::CopyNonZeroAllKeysOffsetName(const FString& sour
 
 void UChromaSDKPluginBPLibrary::CopyAllKeysAllFrames(int32 sourceAnimationId, int32 targetAnimationId)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	int frameCount = _sIChromaSDKPlugin.GetAnimationFrameCount(sourceAnimationId);
 	for (int frameIndex = 0; frameIndex < frameCount; ++frameIndex)
 	{
@@ -2259,7 +2259,7 @@ void UChromaSDKPluginBPLibrary::CopyAllKeysAllFrames(int32 sourceAnimationId, in
 
 void UChromaSDKPluginBPLibrary::CopyAllKeysAllFramesName(const FString& sourceAnimationName, const FString& targetAnimationName)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString sourcePath = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString sourcePath = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (sourceAnimationName.EndsWith(".chroma"))
@@ -2292,7 +2292,7 @@ void UChromaSDKPluginBPLibrary::CopyAllKeysAllFramesName(const FString& sourceAn
 
 void UChromaSDKPluginBPLibrary::CopyNonZeroKeyColor(int sourceAnimationId, int targetAnimationId, int frameIndex, EChromaSDKKeyboardKey::Type key)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	int rzkey = _sKeyboardEnumMap[key];
 	if (rzkey != ChromaSDK::Keyboard::RZKEY::RZKEY_INVALID)
 	{
@@ -2303,7 +2303,7 @@ void UChromaSDKPluginBPLibrary::CopyNonZeroKeyColor(int sourceAnimationId, int t
 
 void UChromaSDKPluginBPLibrary::CopyNonZeroKeyColorName(const FString& sourceAnimationName, const FString& targetAnimationName, const int frameIndex, EChromaSDKKeyboardKey::Type key)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString sourcePath = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString sourcePath = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (sourceAnimationName.EndsWith(".chroma"))
@@ -2336,7 +2336,7 @@ void UChromaSDKPluginBPLibrary::CopyNonZeroKeyColorName(const FString& sourceAni
 
 void UChromaSDKPluginBPLibrary::CopyNonZeroKeysColor(int sourceAnimationId, int targetAnimationId, int frameIndex, const TArray<TEnumAsByte<EChromaSDKKeyboardKey::Type>>& keys)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	for (int k = 0; k < keys.Num(); ++k)
 	{
 		EChromaSDKKeyboardKey::Type key = keys[k];
@@ -2351,7 +2351,7 @@ void UChromaSDKPluginBPLibrary::CopyNonZeroKeysColor(int sourceAnimationId, int 
 
 void UChromaSDKPluginBPLibrary::CopyNonZeroKeysColorName(const FString& sourceAnimationName, const FString& targetAnimationName, const int frameIndex, const TArray<TEnumAsByte<EChromaSDKKeyboardKey::Type>>& keys)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString sourcePath = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString sourcePath = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (sourceAnimationName.EndsWith(".chroma"))
@@ -2388,7 +2388,7 @@ void UChromaSDKPluginBPLibrary::CopyNonZeroKeysColorName(const FString& sourceAn
 
 void UChromaSDKPluginBPLibrary::CopyNonZeroKeysColorAllFrames(int sourceAnimationId, int targetAnimationId, const TArray<TEnumAsByte<EChromaSDKKeyboardKey::Type>>& keys)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	int frameCount = _sIChromaSDKPlugin.GetAnimationFrameCount(targetAnimationId);
 	for (int k = 0; k < keys.Num(); ++k)
 	{
@@ -2407,7 +2407,7 @@ void UChromaSDKPluginBPLibrary::CopyNonZeroKeysColorAllFrames(int sourceAnimatio
 
 void UChromaSDKPluginBPLibrary::CopyNonZeroKeysColorAllFramesName(const FString& sourceAnimationName, const FString& targetAnimationName, const TArray<TEnumAsByte<EChromaSDKKeyboardKey::Type>>& keys)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString sourcePath = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString sourcePath = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (sourceAnimationName.EndsWith(".chroma"))
@@ -2450,7 +2450,7 @@ void UChromaSDKPluginBPLibrary::CopyNonZeroKeysColorAllFramesName(const FString&
 
 void UChromaSDKPluginBPLibrary::CopyNonZeroAllKeysAllFrames(int32 sourceAnimationId, int32 targetAnimationId)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	int frameCount = _sIChromaSDKPlugin.GetAnimationFrameCount(sourceAnimationId);
 	for (int frameIndex = 0; frameIndex < frameCount; ++frameIndex)
 	{
@@ -2461,7 +2461,7 @@ void UChromaSDKPluginBPLibrary::CopyNonZeroAllKeysAllFrames(int32 sourceAnimatio
 
 void UChromaSDKPluginBPLibrary::CopyNonZeroAllKeysAllFramesName(const FString& sourceAnimationName, const FString& targetAnimationName)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString sourcePath = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString sourcePath = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (sourceAnimationName.EndsWith(".chroma"))
@@ -2496,7 +2496,7 @@ void UChromaSDKPluginBPLibrary::CopyNonZeroAllKeysAllFramesName(const FString& s
 
 void UChromaSDKPluginBPLibrary::AddNonZeroAllKeysAllFrames(int32 sourceAnimationId, int32 targetAnimationId)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	int frameCount = _sIChromaSDKPlugin.GetAnimationFrameCount(sourceAnimationId);
 	for (int frameIndex = 0; frameIndex < frameCount; ++frameIndex)
 	{
@@ -2507,7 +2507,7 @@ void UChromaSDKPluginBPLibrary::AddNonZeroAllKeysAllFrames(int32 sourceAnimation
 
 void UChromaSDKPluginBPLibrary::AddNonZeroAllKeysAllFramesName(const FString& sourceAnimationName, const FString& targetAnimationName)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString sourcePath = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString sourcePath = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (sourceAnimationName.EndsWith(".chroma"))
@@ -2542,7 +2542,7 @@ void UChromaSDKPluginBPLibrary::AddNonZeroAllKeysAllFramesName(const FString& so
 
 void UChromaSDKPluginBPLibrary::SubtractNonZeroAllKeysAllFrames(int32 sourceAnimationId, int32 targetAnimationId)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	int frameCount = _sIChromaSDKPlugin.GetAnimationFrameCount(sourceAnimationId);
 	for (int frameIndex = 0; frameIndex < frameCount; ++frameIndex)
 	{
@@ -2553,7 +2553,7 @@ void UChromaSDKPluginBPLibrary::SubtractNonZeroAllKeysAllFrames(int32 sourceAnim
 
 void UChromaSDKPluginBPLibrary::SubtractNonZeroAllKeysAllFramesName(const FString& sourceAnimationName, const FString& targetAnimationName)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString sourcePath = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString sourcePath = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (sourceAnimationName.EndsWith(".chroma"))
@@ -2588,7 +2588,7 @@ void UChromaSDKPluginBPLibrary::SubtractNonZeroAllKeysAllFramesName(const FStrin
 
 void UChromaSDKPluginBPLibrary::CopyNonZeroAllKeysAllFramesOffset(int32 sourceAnimationId, int32 targetAnimationId, int32 offset)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	int frameCount = _sIChromaSDKPlugin.GetAnimationFrameCount(sourceAnimationId);
 	for (int frameIndex = 0; frameIndex < frameCount; ++frameIndex)
 	{
@@ -2599,7 +2599,7 @@ void UChromaSDKPluginBPLibrary::CopyNonZeroAllKeysAllFramesOffset(int32 sourceAn
 
 void UChromaSDKPluginBPLibrary::CopyNonZeroAllKeysAllFramesOffsetName(const FString& sourceAnimationName, const FString& targetAnimationName, int32 offset)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString sourcePath = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString sourcePath = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (sourceAnimationName.EndsWith(".chroma"))
@@ -2634,7 +2634,7 @@ void UChromaSDKPluginBPLibrary::CopyNonZeroAllKeysAllFramesOffsetName(const FStr
 
 void UChromaSDKPluginBPLibrary::AddNonZeroAllKeysAllFramesOffset(int32 sourceAnimationId, int32 targetAnimationId, int32 offset)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	int frameCount = _sIChromaSDKPlugin.GetAnimationFrameCount(sourceAnimationId);
 	for (int frameIndex = 0; frameIndex < frameCount; ++frameIndex)
 	{
@@ -2645,7 +2645,7 @@ void UChromaSDKPluginBPLibrary::AddNonZeroAllKeysAllFramesOffset(int32 sourceAni
 
 void UChromaSDKPluginBPLibrary::AddNonZeroAllKeysAllFramesOffsetName(const FString& sourceAnimationName, const FString& targetAnimationName, int32 offset)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString sourcePath = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString sourcePath = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (sourceAnimationName.EndsWith(".chroma"))
@@ -2680,7 +2680,7 @@ void UChromaSDKPluginBPLibrary::AddNonZeroAllKeysAllFramesOffsetName(const FStri
 
 void UChromaSDKPluginBPLibrary::SubtractNonZeroAllKeysAllFramesOffset(int32 sourceAnimationId, int32 targetAnimationId, int32 offset)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	int frameCount = _sIChromaSDKPlugin.GetAnimationFrameCount(sourceAnimationId);
 	for (int frameIndex = 0; frameIndex < frameCount; ++frameIndex)
 	{
@@ -2691,7 +2691,7 @@ void UChromaSDKPluginBPLibrary::SubtractNonZeroAllKeysAllFramesOffset(int32 sour
 
 void UChromaSDKPluginBPLibrary::SubtractNonZeroAllKeysAllFramesOffsetName(const FString& sourceAnimationName, const FString& targetAnimationName, int32 offset)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString sourcePath = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString sourcePath = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (sourceAnimationName.EndsWith(".chroma"))
@@ -2726,14 +2726,14 @@ void UChromaSDKPluginBPLibrary::SubtractNonZeroAllKeysAllFramesOffsetName(const 
 
 void UChromaSDKPluginBPLibrary::FillColor(int animationId, int frameId, const FLinearColor& colorParam)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.FillColor(animationId, frameId, IChromaSDKPlugin::ToBGR(colorParam));
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::FillColorName(const FString& animationName, int frameId, const FLinearColor& colorParam)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -2751,14 +2751,14 @@ void UChromaSDKPluginBPLibrary::FillColorName(const FString& animationName, int 
 
 void UChromaSDKPluginBPLibrary::FillColorRGB(int animationId, int frameId, int red, int green, int blue)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.FillColorRGB(animationId, frameId, red, green, blue);
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::FillColorRGBName(const FString& animationName, int frameId, int red, int green, int blue)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -2777,14 +2777,14 @@ void UChromaSDKPluginBPLibrary::FillColorRGBName(const FString& animationName, i
 
 void UChromaSDKPluginBPLibrary::FillThresholdColorsRGB(int32 animationId, int32 frameId, int32 threshold, int32 red, int32 green, int32 blue)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.FillThresholdColorsRGB(animationId, frameId, threshold, red, green, blue);
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::FillThresholdColorsRGBName(const FString& animationName, int32 frameId, int32 threshold, int32 red, int32 green, int32 blue)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -2805,14 +2805,14 @@ void UChromaSDKPluginBPLibrary::FillThresholdColorsRGBName(const FString& animat
 
 void UChromaSDKPluginBPLibrary::FillNonZeroColor(int animationId, int frameId, const FLinearColor& colorParam)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.FillNonZeroColor(animationId, frameId, IChromaSDKPlugin::ToBGR(colorParam));
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::FillNonZeroColorName(const FString& animationName, int frameId, const FLinearColor& colorParam)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -2831,14 +2831,14 @@ void UChromaSDKPluginBPLibrary::FillNonZeroColorName(const FString& animationNam
 
 void UChromaSDKPluginBPLibrary::FillNonZeroColorRGB(int animationId, int frameId, int red, int green, int blue)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.FillNonZeroColorRGB(animationId, frameId, red, green, blue);
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::FillNonZeroColorRGBName(const FString& animationName, int frameId, int red, int green, int blue)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -2859,14 +2859,14 @@ void UChromaSDKPluginBPLibrary::FillNonZeroColorRGBName(const FString& animation
 
 void UChromaSDKPluginBPLibrary::FillZeroColor(int animationId, int frameId, const FLinearColor& colorParam)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.FillZeroColor(animationId, frameId, IChromaSDKPlugin::ToBGR(colorParam));
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::FillZeroColorName(const FString& animationName, int frameId, const FLinearColor& colorParam)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -2885,14 +2885,14 @@ void UChromaSDKPluginBPLibrary::FillZeroColorName(const FString& animationName, 
 
 void UChromaSDKPluginBPLibrary::FillZeroColorRGB(int animationId, int frameId, int red, int green, int blue)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.FillZeroColorRGB(animationId, frameId, red, green, blue);
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::FillZeroColorRGBName(const FString& animationName, int frameId, int red, int green, int blue)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -2914,14 +2914,14 @@ void UChromaSDKPluginBPLibrary::FillZeroColorRGBName(const FString& animationNam
 
 void UChromaSDKPluginBPLibrary::FillThresholdColorsAllFrames(int animationId, int threshold, const FLinearColor& colorParam)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.FillThresholdColorsAllFrames(animationId, threshold, IChromaSDKPlugin::ToBGR(colorParam));
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::FillThresholdColorsAllFramesName(const FString& animationName, int threshold, const FLinearColor& colorParam)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -2940,14 +2940,14 @@ void UChromaSDKPluginBPLibrary::FillThresholdColorsAllFramesName(const FString& 
 
 void UChromaSDKPluginBPLibrary::FillThresholdColorsAllFramesRGB(int animationId, int threshold, int red, int green, int blue)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.FillThresholdColorsAllFramesRGB(animationId, threshold, red, green, blue);
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::FillThresholdColorsAllFramesRGBName(const FString& animationName, int threshold, int red, int green, int blue)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -2969,14 +2969,14 @@ void UChromaSDKPluginBPLibrary::FillThresholdColorsAllFramesRGBName(const FStrin
 
 void UChromaSDKPluginBPLibrary::FillColorAllFrames(int animationId, const FLinearColor& colorParam)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.FillColorAllFrames(animationId, IChromaSDKPlugin::ToBGR(colorParam));
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::FillColorAllFramesName(const FString& animationName, const FLinearColor& colorParam)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -2995,14 +2995,14 @@ void UChromaSDKPluginBPLibrary::FillColorAllFramesName(const FString& animationN
 
 void UChromaSDKPluginBPLibrary::FillColorAllFramesRGB(int animationId, int red, int green, int blue)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.FillColorAllFramesRGB(animationId, red, green, blue);
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::FillColorAllFramesRGBName(const FString& animationName, int red, int green, int blue)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -3023,14 +3023,14 @@ void UChromaSDKPluginBPLibrary::FillColorAllFramesRGBName(const FString& animati
 
 void UChromaSDKPluginBPLibrary::FillNonZeroColorAllFrames(int animationId, const FLinearColor& colorParam)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.FillNonZeroColorAllFrames(animationId, IChromaSDKPlugin::ToBGR(colorParam));
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::FillNonZeroColorAllFramesName(const FString& animationName, const FLinearColor& colorParam)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -3049,14 +3049,14 @@ void UChromaSDKPluginBPLibrary::FillNonZeroColorAllFramesName(const FString& ani
 
 void UChromaSDKPluginBPLibrary::FillNonZeroColorAllFramesRGB(int animationId, int red, int green, int blue)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.FillNonZeroColorAllFramesRGB(animationId, red, green, blue);
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::FillNonZeroColorAllFramesRGBName(const FString& animationName, int red, int green, int blue)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -3077,14 +3077,14 @@ void UChromaSDKPluginBPLibrary::FillNonZeroColorAllFramesRGBName(const FString& 
 
 void UChromaSDKPluginBPLibrary::FillZeroColorAllFrames(int animationId, const FLinearColor& colorParam)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.FillZeroColorAllFrames(animationId, IChromaSDKPlugin::ToBGR(colorParam));
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::FillZeroColorAllFramesName(const FString& animationName, const FLinearColor& colorParam)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -3103,14 +3103,14 @@ void UChromaSDKPluginBPLibrary::FillZeroColorAllFramesName(const FString& animat
 
 void UChromaSDKPluginBPLibrary::FillZeroColorAllFramesRGB(int animationId, int red, int green, int blue)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.FillZeroColorAllFramesRGB(animationId, red, green, blue);
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::FillZeroColorAllFramesRGBName(const FString& animationName, int red, int green, int blue)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -3132,14 +3132,14 @@ void UChromaSDKPluginBPLibrary::FillZeroColorAllFramesRGBName(const FString& ani
 
 void UChromaSDKPluginBPLibrary::FillRandomColors(int32 animationId, int32 frameId)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.FillRandomColors(animationId, frameId);
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::FillRandomColorsName(const FString& animationName, int32 frameId)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -3159,14 +3159,14 @@ void UChromaSDKPluginBPLibrary::FillRandomColorsName(const FString& animationNam
 
 void UChromaSDKPluginBPLibrary::FillRandomColorsAllFrames(int32 animationId)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.FillRandomColorsAllFrames(animationId);
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::FillRandomColorsAllFramesName(const FString& animationName)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -3189,14 +3189,14 @@ void UChromaSDKPluginBPLibrary::FillRandomColorsAllFramesName(const FString& ani
 
 void UChromaSDKPluginBPLibrary::FillRandomColorsBlackAndWhite(int32 animationId, int32 frameId)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.FillRandomColorsBlackAndWhite(animationId, frameId);
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::FillRandomColorsBlackAndWhiteName(const FString& animationName, int32 frameId)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -3216,14 +3216,14 @@ void UChromaSDKPluginBPLibrary::FillRandomColorsBlackAndWhiteName(const FString&
 
 void UChromaSDKPluginBPLibrary::FillRandomColorsBlackAndWhiteAllFrames(int32 animationId)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.FillRandomColorsBlackAndWhiteAllFrames(animationId);
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::FillRandomColorsBlackAndWhiteAllFramesName(const FString& animationName)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -3245,14 +3245,14 @@ void UChromaSDKPluginBPLibrary::FillRandomColorsBlackAndWhiteAllFramesName(const
 
 void UChromaSDKPluginBPLibrary::OffsetColors(int animationId, int frameId, int red, int green, int blue)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.OffsetColors(animationId, frameId, red, green, blue);
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::OffsetColorsName(const FString& animationName, int frameId, int red, int green, int blue)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -3272,14 +3272,14 @@ void UChromaSDKPluginBPLibrary::OffsetColorsName(const FString& animationName, i
 
 void UChromaSDKPluginBPLibrary::OffsetColorsAllFrames(int animationId, int red, int green, int blue)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.OffsetColorsAllFrames(animationId, red, green, blue);
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::OffsetColorsAllFramesName(const FString& animationName, int red, int green, int blue)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -3299,14 +3299,14 @@ void UChromaSDKPluginBPLibrary::OffsetColorsAllFramesName(const FString& animati
 
 void UChromaSDKPluginBPLibrary::OffsetNonZeroColors(int animationId, int frameId, int red, int green, int blue)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.OffsetNonZeroColors(animationId, frameId, red, green, blue);
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::OffsetNonZeroColorsName(const FString& animationName, int frameId, int red, int green, int blue)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -3326,14 +3326,14 @@ void UChromaSDKPluginBPLibrary::OffsetNonZeroColorsName(const FString& animation
 
 void UChromaSDKPluginBPLibrary::OffsetNonZeroColorsAllFrames(int animationId, int red, int green, int blue)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.OffsetNonZeroColorsAllFrames(animationId, red, green, blue);
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::OffsetNonZeroColorsAllFramesName(const FString& animationName, int red, int green, int blue)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -3355,14 +3355,14 @@ void UChromaSDKPluginBPLibrary::OffsetNonZeroColorsAllFramesName(const FString& 
 
 void UChromaSDKPluginBPLibrary::MultiplyIntensity(int animationId, int frameId, float intensity)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.MultiplyIntensity(animationId, frameId, intensity);
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::MultiplyIntensityName(const FString& animationName, int frameId, float intensity)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -3383,14 +3383,14 @@ void UChromaSDKPluginBPLibrary::MultiplyIntensityName(const FString& animationNa
 
 void UChromaSDKPluginBPLibrary::MultiplyIntensityRGB(int32 animationId, int32 frameId, int32 red, int32 green, int32 blue)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.MultiplyIntensityRGB(animationId, frameId, red, green, blue);
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::MultiplyIntensityRGBName(const FString& animationName, int32 frameId, int32 red, int32 green, int32 blue)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -3412,7 +3412,7 @@ void UChromaSDKPluginBPLibrary::MultiplyIntensityRGBName(const FString& animatio
 
 void UChromaSDKPluginBPLibrary::MultiplyIntensityColor(int animationId, int frameId, const FLinearColor& colorParam)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	int color = ToBGR(colorParam);
 	_sIChromaSDKPlugin.MultiplyIntensityColor(animationId, frameId, color);
 #endif
@@ -3420,7 +3420,7 @@ void UChromaSDKPluginBPLibrary::MultiplyIntensityColor(int animationId, int fram
 
 void UChromaSDKPluginBPLibrary::MultiplyIntensityColorName(const FString& animationName, int frameId, const FLinearColor& colorParam)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -3443,14 +3443,14 @@ void UChromaSDKPluginBPLibrary::MultiplyIntensityColorName(const FString& animat
 
 void UChromaSDKPluginBPLibrary::MultiplyIntensityAllFrames(int animationId, float intensity)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.MultiplyIntensityAllFrames(animationId, intensity);
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::MultiplyIntensityAllFramesName(const FString& animationName, float intensity)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -3472,7 +3472,7 @@ void UChromaSDKPluginBPLibrary::MultiplyIntensityAllFramesName(const FString& an
 
 void UChromaSDKPluginBPLibrary::MultiplyIntensityColorAllFrames(int animationId, const FLinearColor& colorParam)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	int color = ToBGR(colorParam);
 	_sIChromaSDKPlugin.MultiplyIntensityColorAllFrames(animationId, color);
 #endif
@@ -3480,7 +3480,7 @@ void UChromaSDKPluginBPLibrary::MultiplyIntensityColorAllFrames(int animationId,
 
 void UChromaSDKPluginBPLibrary::MultiplyIntensityColorAllFramesName(const FString& animationName, const FLinearColor& colorParam)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -3502,14 +3502,14 @@ void UChromaSDKPluginBPLibrary::MultiplyIntensityColorAllFramesName(const FStrin
 
 void UChromaSDKPluginBPLibrary::MultiplyIntensityAllFramesRGB(int animationId, float redIntensity, float greenIntensity, float blueIntensity)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.MultiplyIntensityAllFramesRGB(animationId, redIntensity, greenIntensity, blueIntensity);
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::MultiplyIntensityAllFramesRGBName(const FString& animationName, float redIntensity, float greenIntensity, float blueIntensity)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -3529,7 +3529,7 @@ void UChromaSDKPluginBPLibrary::MultiplyIntensityAllFramesRGBName(const FString&
 
 int UChromaSDKPluginBPLibrary::GetFrameCount(const int animationId)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	return _sIChromaSDKPlugin.GetAnimationFrameCount(animationId);
 #else
 	return -1;
@@ -3538,7 +3538,7 @@ int UChromaSDKPluginBPLibrary::GetFrameCount(const int animationId)
 
 int UChromaSDKPluginBPLibrary::GetFrameCountName(const FString& animationName)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -3558,7 +3558,7 @@ int UChromaSDKPluginBPLibrary::GetFrameCountName(const FString& animationName)
 
 void UChromaSDKPluginBPLibrary::SetChromaCustomFlagName(const FString& animationName, bool flag)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -3576,7 +3576,7 @@ void UChromaSDKPluginBPLibrary::SetChromaCustomFlagName(const FString& animation
 
 void UChromaSDKPluginBPLibrary::SetChromaCustomColorAllFramesName(const FString& animationName)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -3595,7 +3595,7 @@ void UChromaSDKPluginBPLibrary::SetChromaCustomColorAllFramesName(const FString&
 
 int32 UChromaSDKPluginBPLibrary::PreviewFrame(int32 animationId, int32 frameId)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	return _sIChromaSDKPlugin.PreviewFrame(animationId, frameId);
 #else
 	return -1;
@@ -3604,7 +3604,7 @@ int32 UChromaSDKPluginBPLibrary::PreviewFrame(int32 animationId, int32 frameId)
 
 void UChromaSDKPluginBPLibrary::PreviewFrameName(const FString& animationName, int32 frameId)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -3623,7 +3623,7 @@ void UChromaSDKPluginBPLibrary::PreviewFrameName(const FString& animationName, i
 
 void UChromaSDKPluginBPLibrary::OverrideFrameDurationName(const FString& animationName, float duration)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -3643,14 +3643,14 @@ void UChromaSDKPluginBPLibrary::OverrideFrameDurationName(const FString& animati
 
 void UChromaSDKPluginBPLibrary::MakeBlankFrames(int32 animationId, int32 frameCount, float duration, const FLinearColor& colorParam)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.MakeBlankFrames(animationId, frameCount, duration, ToBGR(colorParam));
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::MakeBlankFramesName(const FString& animationName, int32 frameCount, float duration, const FLinearColor& colorParam)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -3668,14 +3668,14 @@ void UChromaSDKPluginBPLibrary::MakeBlankFramesName(const FString& animationName
 
 void UChromaSDKPluginBPLibrary::MakeBlankFramesRGB(int32 animationId, int32 frameCount, float duration, int32 red, int32 green, int32 blue)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.MakeBlankFramesRGB(animationId, frameCount, duration, red, green, blue);
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::MakeBlankFramesRGBName(const FString& animationName, int32 frameCount, float duration, int32 red, int32 green, int32 blue)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -3695,14 +3695,14 @@ void UChromaSDKPluginBPLibrary::MakeBlankFramesRGBName(const FString& animationN
 
 void UChromaSDKPluginBPLibrary::MakeBlankFramesRandom(int32 animationId, int32 frameCount, float duration)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.MakeBlankFramesRandom(animationId, frameCount, duration);
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::MakeBlankFramesRandomName(const FString& animationName, int32 frameCount, float duration)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -3722,14 +3722,14 @@ void UChromaSDKPluginBPLibrary::MakeBlankFramesRandomName(const FString& animati
 
 void UChromaSDKPluginBPLibrary::MakeBlankFramesRandomBlackAndWhite(int32 animationId, int32 frameCount, float duration)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.MakeBlankFramesRandomBlackAndWhite(animationId, frameCount, duration);
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::MakeBlankFramesRandomBlackAndWhiteName(const FString& animationName, int32 frameCount, float duration)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -3750,14 +3750,14 @@ void UChromaSDKPluginBPLibrary::MakeBlankFramesRandomBlackAndWhiteName(const FSt
 
 void UChromaSDKPluginBPLibrary::ReverseAllFrames(int32 animationId)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.ReverseAllFrames(animationId);
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::ReverseAllFramesName(const FString& animationName)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -3778,14 +3778,14 @@ void UChromaSDKPluginBPLibrary::ReverseAllFramesName(const FString& animationNam
 
 void UChromaSDKPluginBPLibrary::DuplicateFrames(int32 animationId)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.DuplicateFrames(animationId);
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::DuplicateFramesName(const FString& animationName)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -3806,14 +3806,14 @@ void UChromaSDKPluginBPLibrary::DuplicateFramesName(const FString& animationName
 
 void UChromaSDKPluginBPLibrary::DuplicateFirstFrame(int32 animationId, int32 frameCount)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.DuplicateFirstFrame(animationId, frameCount);
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::DuplicateFirstFrameName(const FString& animationName, int32 frameCount)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -3834,14 +3834,14 @@ void UChromaSDKPluginBPLibrary::DuplicateFirstFrameName(const FString& animation
 
 void UChromaSDKPluginBPLibrary::DuplicateMirrorFrames(int32 animationId)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.DuplicateMirrorFrames(animationId);
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::DuplicateMirrorFramesName(const FString& animationName)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -3862,14 +3862,14 @@ void UChromaSDKPluginBPLibrary::DuplicateMirrorFramesName(const FString& animati
 
 void UChromaSDKPluginBPLibrary::InsertFrame(int32 animationId, int32 sourceFrame, int32 targetFrame)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.InsertFrame(animationId, sourceFrame, targetFrame);
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::InsertFrameName(const FString& animationName, int32 sourceFrame, int32 targetFrame)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -3890,14 +3890,14 @@ void UChromaSDKPluginBPLibrary::InsertFrameName(const FString& animationName, in
 
 void UChromaSDKPluginBPLibrary::InsertDelay(int32 animationId, int32 frameId, int32 delay)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.InsertDelay(animationId, frameId, delay);
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::InsertDelayName(const FString& animationName, int32 frameId, int32 delay)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -3918,14 +3918,14 @@ void UChromaSDKPluginBPLibrary::InsertDelayName(const FString& animationName, in
 
 void UChromaSDKPluginBPLibrary::ReduceFrames(int32 animationId, int32 n)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.ReduceFrames(animationId, n);
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::ReduceFramesName(const FString& animationName, int32 n)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -3946,14 +3946,14 @@ void UChromaSDKPluginBPLibrary::ReduceFramesName(const FString& animationName, i
 
 void UChromaSDKPluginBPLibrary::TrimFrame(int32 animationId, int32 frameId)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.TrimFrame(animationId, frameId);
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::TrimFrameName(const FString& animationName, int32 frameId)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -3974,14 +3974,14 @@ void UChromaSDKPluginBPLibrary::TrimFrameName(const FString& animationName, int3
 
 void UChromaSDKPluginBPLibrary::TrimStartFrames(int32 animationId, int32 numberOfFrames)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.TrimStartFrames(animationId, numberOfFrames);
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::TrimStartFramesName(const FString& animationName, int32 numberOfFrames)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -4002,14 +4002,14 @@ void UChromaSDKPluginBPLibrary::TrimStartFramesName(const FString& animationName
 
 void UChromaSDKPluginBPLibrary::TrimEndFrames(int32 animationId, int32 lastFrameId)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.TrimEndFrames(animationId, lastFrameId);
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::TrimEndFramesName(const FString& animationName, int32 lastFrameId)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -4030,14 +4030,14 @@ void UChromaSDKPluginBPLibrary::TrimEndFramesName(const FString& animationName, 
 
 void UChromaSDKPluginBPLibrary::FadeStartFrames(int32 animationId, int32 fade)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.FadeStartFrames(animationId, fade);
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::FadeStartFramesName(const FString& animationName, int32 fade)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -4058,14 +4058,14 @@ void UChromaSDKPluginBPLibrary::FadeStartFramesName(const FString& animationName
 
 void UChromaSDKPluginBPLibrary::FadeEndFrames(int32 animationId, int32 fade)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.FadeEndFrames(animationId, fade);
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::FadeEndFramesName(const FString& animationName, int32 fade)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -4083,7 +4083,7 @@ void UChromaSDKPluginBPLibrary::FadeEndFramesName(const FString& animationName, 
 
 EChromaSDKKeyboardKey::Type UChromaSDKPluginBPLibrary::GetKeyboardRazerKey(FKey key)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	if (_sKeyboardFKeyMap.find(key) != _sKeyboardFKeyMap.end())
 	{
 		return _sKeyboardFKeyMap[key];
@@ -4096,7 +4096,7 @@ EChromaSDKKeyboardKey::Type UChromaSDKPluginBPLibrary::GetKeyboardRazerKey(FKey 
 
 void UChromaSDKPluginBPLibrary::CopyAnimation(int32 sourceAnimationId, const FString& targetAnimationName)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString targetPath = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString targetPath = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (targetAnimationName.EndsWith(".chroma"))
@@ -4114,7 +4114,7 @@ void UChromaSDKPluginBPLibrary::CopyAnimation(int32 sourceAnimationId, const FSt
 
 void UChromaSDKPluginBPLibrary::CopyAnimationName(const FString& sourceAnimationName, const FString& targetAnimationName)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString sourcePath = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString sourcePath = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (sourceAnimationName.EndsWith(".chroma"))
@@ -4146,14 +4146,14 @@ void UChromaSDKPluginBPLibrary::CopyAnimationName(const FString& sourceAnimation
 
 void UChromaSDKPluginBPLibrary::AppendAllFrames(int32 sourceAnimationId, int32 targetAnimationId)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.AppendAllFrames(sourceAnimationId, targetAnimationId);
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::AppendAllFramesName(const FString& sourceAnimationName, const FString& targetAnimationName)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString sourcePath = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString sourcePath = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (sourceAnimationName.EndsWith(".chroma"))
@@ -4185,14 +4185,14 @@ void UChromaSDKPluginBPLibrary::AppendAllFramesName(const FString& sourceAnimati
 
 void UChromaSDKPluginBPLibrary::InvertColorsAllFrames(int32 animationId)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.InvertColorsAllFrames(animationId);
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::InvertColorsAllFramesName(const FString& animationName)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -4213,14 +4213,14 @@ void UChromaSDKPluginBPLibrary::InvertColorsAllFramesName(const FString& animati
 
 void UChromaSDKPluginBPLibrary::CopyNonZeroTargetAllKeys(int32 sourceAnimationId, int32 targetAnimationId, int32 frameId)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.CopyNonZeroTargetAllKeys(sourceAnimationId, targetAnimationId, frameId);
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::CopyNonZeroTargetAllKeysName(const FString& sourceAnimationName, const FString& targetAnimationName, int32 frameId)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString sourcePath = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString sourcePath = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (sourceAnimationName.EndsWith(".chroma"))
@@ -4251,14 +4251,14 @@ void UChromaSDKPluginBPLibrary::CopyNonZeroTargetAllKeysName(const FString& sour
 
 void UChromaSDKPluginBPLibrary::CopyNonZeroTargetAllKeysAllFrames(int32 sourceAnimationId, int32 targetAnimationId)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.CopyNonZeroTargetAllKeysAllFrames(sourceAnimationId, targetAnimationId);
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::CopyNonZeroTargetAllKeysAllFramesName(const FString& sourceAnimationName, const FString& targetAnimationName)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString sourcePath = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString sourcePath = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (sourceAnimationName.EndsWith(".chroma"))
@@ -4289,14 +4289,14 @@ void UChromaSDKPluginBPLibrary::CopyNonZeroTargetAllKeysAllFramesName(const FStr
 
 void UChromaSDKPluginBPLibrary::AddNonZeroTargetAllKeysAllFrames(int32 sourceAnimationId, int32 targetAnimationId)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.AddNonZeroTargetAllKeysAllFrames(sourceAnimationId, targetAnimationId);
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::AddNonZeroTargetAllKeysAllFramesName(const FString& sourceAnimationName, const FString& targetAnimationName)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString sourcePath = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString sourcePath = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (sourceAnimationName.EndsWith(".chroma"))
@@ -4328,14 +4328,14 @@ void UChromaSDKPluginBPLibrary::AddNonZeroTargetAllKeysAllFramesName(const FStri
 
 void UChromaSDKPluginBPLibrary::SubtractNonZeroTargetAllKeysAllFrames(int32 sourceAnimationId, int32 targetAnimationId)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.SubtractNonZeroTargetAllKeysAllFrames(sourceAnimationId, targetAnimationId);
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::SubtractNonZeroTargetAllKeysAllFramesName(const FString& sourceAnimationName, const FString& targetAnimationName)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString sourcePath = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString sourcePath = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (sourceAnimationName.EndsWith(".chroma"))
@@ -4366,14 +4366,14 @@ void UChromaSDKPluginBPLibrary::SubtractNonZeroTargetAllKeysAllFramesName(const 
 
 void UChromaSDKPluginBPLibrary::CopyNonZeroTargetAllKeysAllFramesOffset(int32 sourceAnimationId, int32 targetAnimationId, int32 offset)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.CopyNonZeroTargetAllKeysAllFramesOffset(sourceAnimationId, targetAnimationId, offset);
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::CopyNonZeroTargetAllKeysAllFramesOffsetName(const FString& sourceAnimationName, const FString& targetAnimationName, int32 offset)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString sourcePath = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString sourcePath = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (sourceAnimationName.EndsWith(".chroma"))
@@ -4405,14 +4405,14 @@ void UChromaSDKPluginBPLibrary::CopyNonZeroTargetAllKeysAllFramesOffsetName(cons
 
 void UChromaSDKPluginBPLibrary::AddNonZeroTargetAllKeysAllFramesOffset(int32 sourceAnimationId, int32 targetAnimationId, int32 offset)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.AddNonZeroTargetAllKeysAllFramesOffset(sourceAnimationId, targetAnimationId, offset);
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::AddNonZeroTargetAllKeysAllFramesOffsetName(const FString& sourceAnimationName, const FString& targetAnimationName, int32 offset)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString sourcePath = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString sourcePath = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (sourceAnimationName.EndsWith(".chroma"))
@@ -4444,14 +4444,14 @@ void UChromaSDKPluginBPLibrary::AddNonZeroTargetAllKeysAllFramesOffsetName(const
 
 void UChromaSDKPluginBPLibrary::SubtractNonZeroTargetAllKeysAllFramesOffset(int32 sourceAnimationId, int32 targetAnimationId, int32 offset)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.SubtractNonZeroTargetAllKeysAllFramesOffset(sourceAnimationId, targetAnimationId, offset);
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::SubtractNonZeroTargetAllKeysAllFramesOffsetName(const FString& sourceAnimationName, const FString& targetAnimationName, int32 offset)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString sourcePath = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString sourcePath = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (sourceAnimationName.EndsWith(".chroma"))
@@ -4482,7 +4482,7 @@ void UChromaSDKPluginBPLibrary::SubtractNonZeroTargetAllKeysAllFramesOffsetName(
 
 void UChromaSDKPluginBPLibrary::MultiplyColorLerpAllFrames(int32 animationId, const FLinearColor& colorParam1, const FLinearColor& colorParam2)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	int color1 = ToBGR(colorParam1);
 	int color2 = ToBGR(colorParam2);
 	_sIChromaSDKPlugin.MultiplyColorLerpAllFrames(animationId, color1, color2);
@@ -4491,7 +4491,7 @@ void UChromaSDKPluginBPLibrary::MultiplyColorLerpAllFrames(int32 animationId, co
 
 void UChromaSDKPluginBPLibrary::MultiplyColorLerpAllFramesName(const FString& animationName, const FLinearColor& colorParam1, const FLinearColor& colorParam2)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -4514,7 +4514,7 @@ void UChromaSDKPluginBPLibrary::MultiplyColorLerpAllFramesName(const FString& an
 
 void UChromaSDKPluginBPLibrary::MultiplyTargetColorLerpAllFrames(int32 animationId, const FLinearColor& colorParam1, const FLinearColor& colorParam2)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	int color1 = ToBGR(colorParam1);
 	int color2 = ToBGR(colorParam2);
 	_sIChromaSDKPlugin.MultiplyTargetColorLerpAllFrames(animationId, color1, color2);
@@ -4522,7 +4522,7 @@ void UChromaSDKPluginBPLibrary::MultiplyTargetColorLerpAllFrames(int32 animation
 }
 void UChromaSDKPluginBPLibrary::MultiplyTargetColorLerpAllFramesName(const FString& animationName, const FLinearColor& colorParam1, const FLinearColor& colorParam2)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -4542,13 +4542,13 @@ void UChromaSDKPluginBPLibrary::MultiplyTargetColorLerpAllFramesName(const FStri
 
 void UChromaSDKPluginBPLibrary::FillThresholdRGBColorsAllFramesRGB(int32 animationId, int32 redThreshold, int32 greenThreshold, int32 blueThreshold, int32 red, int32 green, int32 blue)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.FillThresholdRGBColorsAllFramesRGB(animationId, redThreshold, greenThreshold, blueThreshold, red, green, blue);
 #endif
 }
 void UChromaSDKPluginBPLibrary::FillThresholdRGBColorsAllFramesRGBName(const FString& animationName, int32 redThreshold, int32 greenThreshold, int32 blueThreshold, int32 red, int32 green, int32 blue)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -4567,14 +4567,14 @@ void UChromaSDKPluginBPLibrary::FillThresholdRGBColorsAllFramesRGBName(const FSt
 
 void UChromaSDKPluginBPLibrary::FillThresholdColorsMinMaxAllFramesRGB(int32 animationId, int32 minThreshold, int32 minRed, int32 minGreen, int32 minBlue, int32 maxThreshold, int32 maxRed, int32 maxGreen, int32 maxBlue)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_sIChromaSDKPlugin.FillThresholdColorsMinMaxAllFramesRGB(animationId, minThreshold, minRed, minGreen, minBlue, maxThreshold, maxRed, maxGreen, maxBlue);
 #endif
 }
 
 void UChromaSDKPluginBPLibrary::FillThresholdColorsMinMaxAllFramesRGBName(const FString& animationName, int32 minThreshold, int32 minRed, int32 minGreen, int32 minBlue, int32 maxThreshold, int32 maxRed, int32 maxGreen, int32 maxBlue)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -4595,7 +4595,7 @@ void UChromaSDKPluginBPLibrary::FillThresholdColorsMinMaxAllFramesRGBName(const 
 
 void UChromaSDKPluginBPLibrary::MultiplyNonZeroTargetColorLerpAllFrames(int32 animationId, const FLinearColor& colorParam1, const FLinearColor& colorParam2)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	int color1 = ToBGR(colorParam1);
 	int color2 = ToBGR(colorParam2);
 	_sIChromaSDKPlugin.MultiplyNonZeroTargetColorLerpAllFrames(animationId, color1, color2);
@@ -4604,7 +4604,7 @@ void UChromaSDKPluginBPLibrary::MultiplyNonZeroTargetColorLerpAllFrames(int32 an
 
 void UChromaSDKPluginBPLibrary::MultiplyNonZeroTargetColorLerpAllFramesName(const FString& animationName, const FLinearColor& colorParam1, const FLinearColor& colorParam2)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
 //	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
 	if (animationName.EndsWith(".chroma"))
@@ -4623,7 +4623,7 @@ void UChromaSDKPluginBPLibrary::MultiplyNonZeroTargetColorLerpAllFramesName(cons
 }
 
 
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 
 #include "HideWindowsPlatformTypes.h"
 
