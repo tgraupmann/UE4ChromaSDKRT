@@ -7,7 +7,7 @@
 #include "ChromaSDKPluginBPLibrary.h"
 #include "ChromaThread.h"
 
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 
 #include "AllowWindowsPlatformTypes.h" 
 
@@ -52,7 +52,7 @@ void FChromaSDKPlugin::StartupModule()
 {
 	// This code will execute after your module is loaded into memory (but after global variables are initialized, of course.)
 
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_mInitialized = false;
 	_mAnimationId = 0;
 	_mAnimationMapID.clear();
@@ -155,7 +155,7 @@ void FChromaSDKPlugin::ShutdownModule()
 	// This function may be called during shutdown to clean up your module.  For modules that support dynamic reloading,
 	// we call this function before unloading the module.
 
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	ChromaThread::Instance()->Stop();
 
 	if (UChromaSDKPluginBPLibrary::IsInitialized())
@@ -171,7 +171,7 @@ void FChromaSDKPlugin::ShutdownModule()
 #endif
 }
 
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 
 int IChromaSDKPlugin::ChromaSDKInit()
 {
@@ -353,7 +353,7 @@ FLinearColor IChromaSDKPlugin::ToLinearColor(int color)
 
 int IChromaSDKPlugin::GetMaxLeds(EChromaSDKDevice1DEnum::Type device)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	switch (device)
 	{
 	case EChromaSDKDevice1DEnum::DE_ChromaLink:
@@ -369,7 +369,7 @@ int IChromaSDKPlugin::GetMaxLeds(EChromaSDKDevice1DEnum::Type device)
 
 int IChromaSDKPlugin::GetMaxRow(EChromaSDKDevice2DEnum::Type device)
 {
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	switch (device)
 	{
 	case EChromaSDKDevice2DEnum::DE_Keyboard:
@@ -386,7 +386,7 @@ int IChromaSDKPlugin::GetMaxRow(EChromaSDKDevice2DEnum::Type device)
 int IChromaSDKPlugin::GetMaxColumn(EChromaSDKDevice2DEnum::Type device)
 {
 	int result = 0;
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	switch (device)
 	{
 	case EChromaSDKDevice2DEnum::DE_Keyboard:
