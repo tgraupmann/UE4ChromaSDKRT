@@ -4,7 +4,7 @@
 
 #include "ModuleManager.h"
 
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 
 //expose HMODULE
 #include "RzChromaSDKDefines.h"
@@ -25,9 +25,6 @@ typedef RZRESULT(*CHROMA_SDK_CREATE_MOUSE_EFFECT)(ChromaSDK::Mouse::EFFECT_TYPE 
 typedef RZRESULT(*CHROMA_SDK_CREATE_MOUSEPAD_EFFECT)(ChromaSDK::Mousepad::EFFECT_TYPE Effect, PRZPARAM pParam, RZEFFECTID *pEffectId);
 typedef RZRESULT(*CHROMA_SDK_SET_EFFECT)(RZEFFECTID EffectId);
 typedef RZRESULT(*CHROMA_SDK_DELETE_EFFECT)(RZEFFECTID EffectId);
-typedef RZRESULT(*CHROMA_SDK_REGISTER_EVENT_NOTIFICATION)(HWND hWnd);
-typedef RZRESULT(*CHROMA_SDK_UNREGISTER_EVENT_NOTIFICATION)(void);
-typedef RZRESULT(*CHROMA_SDK_QUERY_DEVICE)(RZDEVICEID DeviceId, ChromaSDK::DEVICE_INFO_TYPE &DeviceInfo);
 
 namespace ChromaSDK
 {
@@ -66,7 +63,7 @@ public:
 		return FModuleManager::Get().IsModuleLoaded( "ChromaSDKPlugin" );
 	}
 
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	// SDK Methods
 	int ChromaSDKInit();
 	int ChromaSDKUnInit();
@@ -476,7 +473,6 @@ protected:
 	CHROMA_SDK_CREATE_MOUSEPAD_EFFECT _mMethodCreateMousepadEffect;
 	CHROMA_SDK_SET_EFFECT _mMethodSetEffect;
 	CHROMA_SDK_DELETE_EFFECT _mMethodDeleteEffect;
-	CHROMA_SDK_QUERY_DEVICE _mMethodQueryDevice;
 
 	int _mAnimationId;
 	std::map<std::string, int> _mAnimationMapID;

@@ -1,4 +1,3 @@
-Binaries/
 UE4ChromaSDKRT.v12.suo
 UE4ChromaSDKRT.opensdf
 UE4ChromaSDKRT.sdf
@@ -31,3 +30,4 @@ ChromaSDKPlugin_Source_4_8.zip
 ChromaSDKPlugin_Source_4_7.zip
 ChromaSDKPlugin_Source_4_6.zip
 ChromaSDKPlugin_Source_4_20.zip
+DerivedDataCache/

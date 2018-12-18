@@ -963,7 +963,7 @@ class CHROMASDKPLUGIN_API UChromaSDKPluginBPLibrary : public UBlueprintFunctionL
 	static EChromaSDKKeyboardKey::Type GetKeyboardRazerKey(FKey key);
 
 
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 private:
 	static IChromaSDKPlugin _sIChromaSDKPlugin;
 

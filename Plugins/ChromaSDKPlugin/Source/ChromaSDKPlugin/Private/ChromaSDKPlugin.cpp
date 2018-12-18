@@ -23,10 +23,16 @@ using namespace ChromaSDK::Mouse;
 using namespace ChromaSDK::Mousepad;
 using namespace std;
 
+#if PLATFORM_XBOXONE
+#define CHROMASDKDLL        _T("RzChromaSDK64.dll")
+#endif
+
+#if PLATFORM_WINDOWS
 #ifdef _WIN64
 #define CHROMASDKDLL        _T("RzChromaSDK64.dll")
 #else
 #define CHROMASDKDLL        _T("RzChromaSDK.dll")
+#endif
 #endif
 
 #endif
@@ -77,11 +83,6 @@ void FChromaSDKPlugin::StartupModule()
 	}
 	_mMethodUnInit = (CHROMA_SDK_UNINIT)GetProcAddress(_mLibraryChroma, "UnInit");
 	if (ValidateGetProcAddress(_mMethodUnInit == nullptr, FString("UnInit")))
-	{
-		return;
-	}
-	_mMethodQueryDevice = (CHROMA_SDK_QUERY_DEVICE)GetProcAddress(_mLibraryChroma, "QueryDevice");
-	if (ValidateGetProcAddress(_mMethodQueryDevice == nullptr, FString("QueryDevice")))
 	{
 		return;
 	}
@@ -2410,9 +2411,9 @@ void IChromaSDKPlugin::FillThresholdColorsRGB(int animationId, int frameId, int 
 			{
 				FLinearColor& linearColor = colors[i];
 				int oldColor = ToBGR(linearColor);
-				int red = oldColor & 0xFF;
-				int green = (oldColor & 0xFF00) >> 8;
-				int blue = (oldColor & 0xFF0000) >> 16;
+				red = oldColor & 0xFF;
+				green = (oldColor & 0xFF00) >> 8;
+				blue = (oldColor & 0xFF0000) >> 16;
 				if (red != 0 &&
 					green != 0 &&
 					blue != 0 &&
@@ -2442,9 +2443,9 @@ void IChromaSDKPlugin::FillThresholdColorsRGB(int animationId, int frameId, int 
 				{
 					FLinearColor& linearColor = row.Colors[j];
 					int oldColor = ToBGR(linearColor);
-					int red = oldColor & 0xFF;
-					int green = (oldColor & 0xFF00) >> 8;
-					int blue = (oldColor & 0xFF0000) >> 16;
+					red = oldColor & 0xFF;
+					green = (oldColor & 0xFF00) >> 8;
+					blue = (oldColor & 0xFF0000) >> 16;
 					if (red != 0 &&
 						green != 0 &&
 						blue != 0 &&
@@ -3319,10 +3320,10 @@ void IChromaSDKPlugin::MultiplyIntensityColor(int animationId, int frameId, int 
 			TArray<FLinearColor>& colors = frame.Colors;
 			for (int i = 0; i < maxLeds; ++i)
 			{
-				int color = ToBGR(colors[i]);
-				int red = (color & 0xFF);
-				int green = (color & 0xFF00) >> 8;
-				int blue = (color & 0xFF0000) >> 16;
+				color = ToBGR(colors[i]);
+				red = (color & 0xFF);
+				green = (color & 0xFF00) >> 8;
+				blue = (color & 0xFF0000) >> 16;
 				red = max(0, min(255, red * redIntensity));
 				green = max(0, min(255, green * greenIntensity));
 				blue = max(0, min(255, blue * blueIntensity));
@@ -3347,10 +3348,10 @@ void IChromaSDKPlugin::MultiplyIntensityColor(int animationId, int frameId, int 
 				FChromaSDKColors& row = frame.Colors[i];
 				for (int j = 0; j < maxColumn; ++j)
 				{
-					int color = ToBGR(row.Colors[j]);
-					int red = (color & 0xFF);
-					int green = (color & 0xFF00) >> 8;
-					int blue = (color & 0xFF0000) >> 16;
+					color = ToBGR(row.Colors[j]);
+					red = (color & 0xFF);
+					green = (color & 0xFF00) >> 8;
+					blue = (color & 0xFF0000) >> 16;
 					red = max(0, min(255, red * redIntensity));
 					green = max(0, min(255, green * greenIntensity));
 					blue = max(0, min(255, blue * blueIntensity));
@@ -3406,9 +3407,9 @@ void IChromaSDKPlugin::MultiplyIntensityRGB(int animationId, int frameId, int re
 			{
 				FLinearColor& linearColor = colors[i];
 				int color = ToBGR(linearColor);
-				int red = (color & 0xFF);
-				int green = (color & 0xFF00) >> 8;
-				int blue = (color & 0xFF0000) >> 16;
+				red = (color & 0xFF);
+				green = (color & 0xFF00) >> 8;
+				blue = (color & 0xFF0000) >> 16;
 				red = max(0, min(255, red * redIntensity));
 				green = max(0, min(255, green * greenIntensity));
 				blue = max(0, min(255, blue * blueIntensity));
@@ -3435,9 +3436,9 @@ void IChromaSDKPlugin::MultiplyIntensityRGB(int animationId, int frameId, int re
 				{
 					FLinearColor& linearColor = row.Colors[j];
 					int color = ToBGR(linearColor);
-					int red = (color & 0xFF);
-					int green = (color & 0xFF00) >> 8;
-					int blue = (color & 0xFF0000) >> 16;
+					red = (color & 0xFF);
+					green = (color & 0xFF00) >> 8;
+					blue = (color & 0xFF0000) >> 16;
 					red = max(0, min(255, red * redIntensity));
 					green = max(0, min(255, green * greenIntensity));
 					blue = max(0, min(255, blue * blueIntensity));
@@ -4401,9 +4402,9 @@ void IChromaSDKPlugin::InsertDelay(int animationId, int frameId, int delay)
 				newFrames.push_back(frame);
 			}
 			frames.clear();
-			for (int frameId = 0; frameId < newFrames.size(); ++frameId)
+			for (int index = 0; index < newFrames.size(); ++index)
 			{
-				FChromaSDKColorFrame1D frame = newFrames[frameId];
+				FChromaSDKColorFrame1D frame = newFrames[index];
 				frames.push_back(frame);
 			}
 		}
@@ -4426,9 +4427,9 @@ void IChromaSDKPlugin::InsertDelay(int animationId, int frameId, int delay)
 				newFrames.push_back(frame);
 			}
 			frames.clear();
-			for (int frameId = 0; frameId < newFrames.size(); ++frameId)
+			for (int index = 0; index < newFrames.size(); ++index)
 			{
-				FChromaSDKColorFrame2D frame = newFrames[frameId];
+				FChromaSDKColorFrame2D frame = newFrames[index];
 				frames.push_back(frame);
 			}
 		}
@@ -4553,9 +4554,9 @@ void IChromaSDKPlugin::TrimFrame(int animationId, int frameId)
 				}
 			}
 			frames.clear();
-			for (int frameId = 0; frameId < newFrames.size(); ++frameId)
+			for (int index = 0; index < newFrames.size(); ++index)
 			{
-				FChromaSDKColorFrame1D& frame = newFrames[frameId];
+				FChromaSDKColorFrame1D& frame = newFrames[index];
 				frames.push_back(frame);
 			}
 		}
@@ -4574,9 +4575,9 @@ void IChromaSDKPlugin::TrimFrame(int animationId, int frameId)
 				}
 			}
 			frames.clear();
-			for (int frameId = 0; frameId < newFrames.size(); ++frameId)
+			for (int index = 0; index < newFrames.size(); ++index)
 			{
-				FChromaSDKColorFrame2D& frame = newFrames[frameId];
+				FChromaSDKColorFrame2D& frame = newFrames[index];
 				frames.push_back(frame);
 			}
 		}
@@ -6054,9 +6055,9 @@ void IChromaSDKPlugin::FillThresholdRGBColorsRGB(int animationId, int frameId, i
 			for (int i = 0; i < maxLeds; ++i)
 			{
 				int oldColor = ToBGR(colors[i]);
-				int red = oldColor & 0xFF;
-				int green = (oldColor & 0xFF00) >> 8;
-				int blue = (oldColor & 0xFF0000) >> 16;
+				red = oldColor & 0xFF;
+				green = (oldColor & 0xFF00) >> 8;
+				blue = (oldColor & 0xFF0000) >> 16;
 				if (red != 0 &&
 					green != 0 &&
 					blue != 0 &&
@@ -6085,9 +6086,9 @@ void IChromaSDKPlugin::FillThresholdRGBColorsRGB(int animationId, int frameId, i
 				for (int j = 0; j < maxColumn; ++j)
 				{
 					int oldColor = ToBGR(row.Colors[j]);
-					int red = oldColor & 0xFF;
-					int green = (oldColor & 0xFF00) >> 8;
-					int blue = (oldColor & 0xFF0000) >> 16;
+					red = oldColor & 0xFF;
+					green = (oldColor & 0xFF00) >> 8;
+					blue = (oldColor & 0xFF0000) >> 16;
 					if (red != 0 &&
 						green != 0 &&
 						blue != 0 &&

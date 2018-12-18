@@ -2,6 +2,8 @@
 
 #include "AnimationBase.h"
 
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+
 namespace ChromaSDK
 {
 	class Animation2D : public AnimationBase
@@ -33,3 +35,5 @@ namespace ChromaSDK
 		bool _mUseChromaCustom;
 	};
 }
+
+#endif
