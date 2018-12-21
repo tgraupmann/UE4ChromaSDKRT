@@ -222,14 +222,14 @@ struct CHROMASDKPLUGIN_API FChromaSDKGuid
 {
 	GENERATED_USTRUCT_BODY()
 
-#if defined(PLATFORM_WINDOWS) || defined(PLATFORM_XBOXONE)
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	RZEFFECTID Data;
 #endif
 
 	//Constructor
 	FChromaSDKGuid()
 	{
-#if defined(PLATFORM_WINDOWS) || defined(PLATFORM_XBOXONE)
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 		Data = RZEFFECTID();
 		Data.Data1 = 0;
 		Data.Data2 = 0;
