@@ -5,7 +5,7 @@
 #include "ChromaSDKPluginBPLibrary.h"
 #include "ChromaSDKPluginAnimation1DObject.h" //___HACK_UE4_VERSION_4_15_OR_LESS
 
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+#if defined(PLATFORM_WINDOWS) || defined(PLATFORM_XBOXONE)
 #include "AllowWindowsPlatformTypes.h" 
 #endif
 
@@ -18,7 +18,7 @@ UChromaSDKPluginAnimation1DObject::UChromaSDKPluginAnimation1DObject(const FPost
 
 bool UChromaSDKPluginAnimation1DObject::IsLoaded()
 {
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+#if defined(PLATFORM_WINDOWS) || defined(PLATFORM_XBOXONE)
 	return _mIsLoaded;
 #else
 	return false;
@@ -27,7 +27,7 @@ bool UChromaSDKPluginAnimation1DObject::IsLoaded()
 
 void UChromaSDKPluginAnimation1DObject::Unload()
 {
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+#if defined(PLATFORM_WINDOWS) || defined(PLATFORM_XBOXONE)
 	if (!_mIsLoaded)
 	{
 		//ignore
@@ -50,7 +50,7 @@ void UChromaSDKPluginAnimation1DObject::Unload()
 
 void UChromaSDKPluginAnimation1DObject::Tick(float deltaTime)
 {
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+#if defined(PLATFORM_WINDOWS) || defined(PLATFORM_XBOXONE)
 	_mTime += deltaTime;
 	float nextTime = GetDuration(_mCurrentFrame);
 	if (nextTime < _mTime)
@@ -83,7 +83,7 @@ void UChromaSDKPluginAnimation1DObject::Tick(float deltaTime)
 
 bool UChromaSDKPluginAnimation1DObject::IsTickable() const
 {
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+#if defined(PLATFORM_WINDOWS) || defined(PLATFORM_XBOXONE)
 	return _mIsPlaying;
 #else
 	return false;
@@ -92,7 +92,7 @@ bool UChromaSDKPluginAnimation1DObject::IsTickable() const
 
 bool UChromaSDKPluginAnimation1DObject::IsTickableInEditor() const
 {
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+#if defined(PLATFORM_WINDOWS) || defined(PLATFORM_XBOXONE)
 	return true;
 #else
 	return false;
@@ -119,6 +119,6 @@ float UChromaSDKPluginAnimation1DObject::GetDuration(int index)
 	return 0.0f;
 }
 
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+#if defined(PLATFORM_WINDOWS) || defined(PLATFORM_XBOXONE)
 #include "HideWindowsPlatformTypes.h" 
 #endif

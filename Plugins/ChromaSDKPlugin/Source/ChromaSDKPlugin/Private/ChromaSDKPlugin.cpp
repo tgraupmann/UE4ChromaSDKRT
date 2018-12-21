@@ -7,7 +7,7 @@
 #include "ChromaSDKPluginBPLibrary.h"
 #include "ChromaThread.h"
 
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+#if defined(PLATFORM_WINDOWS) || defined(PLATFORM_XBOXONE)
 
 #include "AllowWindowsPlatformTypes.h" 
 
@@ -23,11 +23,9 @@ using namespace ChromaSDK::Mouse;
 using namespace ChromaSDK::Mousepad;
 using namespace std;
 
-#if PLATFORM_XBOXONE
+#if defined(PLATFORM_XBOXONE)
 #define CHROMASDKDLL        _T("RzChromaSDK64.dll")
-#endif
-
-#if PLATFORM_WINDOWS
+#elif defined(PLATFORM_WINDOWS)
 #ifdef _WIN64
 #define CHROMASDKDLL        _T("RzChromaSDK64.dll")
 #else
@@ -58,7 +56,7 @@ void FChromaSDKPlugin::StartupModule()
 {
 	// This code will execute after your module is loaded into memory (but after global variables are initialized, of course.)
 
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+#if defined(PLATFORM_WINDOWS) || defined(PLATFORM_XBOXONE)
 	_mInitialized = false;
 	_mAnimationId = 0;
 	_mAnimationMapID.clear();
@@ -66,7 +64,11 @@ void FChromaSDKPlugin::StartupModule()
 	_mPlayMap1D.clear();
 	_mPlayMap2D.clear();
 
+#if defined(PLATFORM_XBOXONE)
+	_mLibraryChroma = LoadLibrary(*FPaths::Combine(*FPaths::LaunchDir(), CHROMASDKDLL));
+#else
 	_mLibraryChroma = LoadLibrary(CHROMASDKDLL);
+#endif
 	if (_mLibraryChroma == NULL)
 	{
 		UE_LOG(LogTemp, Error, TEXT("ChromaSDKPlugin failed to load!"));
@@ -156,7 +158,7 @@ void FChromaSDKPlugin::ShutdownModule()
 	// This function may be called during shutdown to clean up your module.  For modules that support dynamic reloading,
 	// we call this function before unloading the module.
 
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+#if defined(PLATFORM_WINDOWS) || defined(PLATFORM_XBOXONE)
 	ChromaThread::Instance()->Stop();
 
 	if (UChromaSDKPluginBPLibrary::IsInitialized())
@@ -172,7 +174,7 @@ void FChromaSDKPlugin::ShutdownModule()
 #endif
 }
 
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+#if defined(PLATFORM_WINDOWS) || defined(PLATFORM_XBOXONE)
 
 int IChromaSDKPlugin::ChromaSDKInit()
 {
@@ -354,7 +356,7 @@ FLinearColor IChromaSDKPlugin::ToLinearColor(int color)
 
 int IChromaSDKPlugin::GetMaxLeds(EChromaSDKDevice1DEnum::Type device)
 {
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+#if defined(PLATFORM_WINDOWS) || defined(PLATFORM_XBOXONE)
 	switch (device)
 	{
 	case EChromaSDKDevice1DEnum::DE_ChromaLink:
@@ -370,7 +372,7 @@ int IChromaSDKPlugin::GetMaxLeds(EChromaSDKDevice1DEnum::Type device)
 
 int IChromaSDKPlugin::GetMaxRow(EChromaSDKDevice2DEnum::Type device)
 {
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+#if defined(PLATFORM_WINDOWS) || defined(PLATFORM_XBOXONE)
 	switch (device)
 	{
 	case EChromaSDKDevice2DEnum::DE_Keyboard:
@@ -387,7 +389,7 @@ int IChromaSDKPlugin::GetMaxRow(EChromaSDKDevice2DEnum::Type device)
 int IChromaSDKPlugin::GetMaxColumn(EChromaSDKDevice2DEnum::Type device)
 {
 	int result = 0;
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+#if defined(PLATFORM_WINDOWS) || defined(PLATFORM_XBOXONE)
 	switch (device)
 	{
 	case EChromaSDKDevice2DEnum::DE_Keyboard:

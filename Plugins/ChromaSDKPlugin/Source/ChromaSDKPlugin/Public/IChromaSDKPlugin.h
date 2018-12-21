@@ -4,7 +4,7 @@
 
 #include "ModuleManager.h"
 
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+#if defined(PLATFORM_WINDOWS) || defined(PLATFORM_XBOXONE)
 
 //expose HMODULE
 #include "RzChromaSDKDefines.h"
@@ -63,7 +63,7 @@ public:
 		return FModuleManager::Get().IsModuleLoaded( "ChromaSDKPlugin" );
 	}
 
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+#if defined(PLATFORM_WINDOWS) || defined(PLATFORM_XBOXONE)
 	// SDK Methods
 	int ChromaSDKInit();
 	int ChromaSDKUnInit();
