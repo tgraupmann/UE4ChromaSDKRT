@@ -14,6 +14,8 @@
 #include <string>
 #include "ChromaSDKPluginTypes.h"
 
+DECLARE_LOG_CATEGORY_EXTERN(LogChromaPlugin, Log, All);
+
 typedef RZRESULT(*CHROMA_SDK_INIT)(void);
 typedef RZRESULT(*CHROMA_SDK_UNINIT)(void);
 typedef RZRESULT(*CHROMA_SDK_CREATE_EFFECT)(RZDEVICEID DeviceId, ChromaSDK::EFFECT_TYPE Effect, PRZPARAM pParam, RZEFFECTID *pEffectId);
