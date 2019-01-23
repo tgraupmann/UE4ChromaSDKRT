@@ -40,7 +40,7 @@ void ChromaThread::ProcessAnimations(float deltaTime)
 		}
 	}
 
-	for (int i = 0; i < doneList.size(); ++i)
+	for (int i = 0; i < (int)doneList.size(); ++i)
 	{
 		AnimationBase* animation = doneList[i];
 		if (animation != nullptr)
@@ -140,7 +140,7 @@ int ChromaThread::GetAnimationId(int index)
 	{
 		return -1;
 	}
-	if (index < _mAnimations.size())
+	if (index < (int)_mAnimations.size())
 	{
 		AnimationBase* animation = _mAnimations[index];
 		if (animation != nullptr)

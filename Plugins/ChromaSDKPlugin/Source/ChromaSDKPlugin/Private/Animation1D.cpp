@@ -168,7 +168,7 @@ void Animation1D::Update(float deltaTime)
 	if (_mCurrentFrame == -1)
 	{
 		_mCurrentFrame = 0;
-		if (_mCurrentFrame < _mEffects.size())
+		if (_mCurrentFrame < (int)_mEffects.size())
 		{
 			FChromaSDKEffectResult& effect = _mEffects[_mCurrentFrame];
 			int result = UChromaSDKPluginBPLibrary::ChromaSDKSetEffect(effect.EffectId);
@@ -186,7 +186,7 @@ void Animation1D::Update(float deltaTime)
 		{
 			_mTime = 0.0f;
 			++_mCurrentFrame;
-			if (_mCurrentFrame < _mEffects.size())
+			if (_mCurrentFrame < (int)_mEffects.size())
 			{
 				FChromaSDKEffectResult& effect = _mEffects[_mCurrentFrame];
 				int result = UChromaSDKPluginBPLibrary::ChromaSDKSetEffect(effect.EffectId);
