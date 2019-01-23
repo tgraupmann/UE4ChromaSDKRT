@@ -16,7 +16,7 @@ public class UE4ChromaSDKRT : ModuleRules
 		// Uncomment if you are using Slate UI
 		PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });
 
-        UEBuildConfiguration.bForceEnableExceptions = true;
+		UEBuildConfiguration.bForceEnableExceptions = true; // ___HACK_UE4_VERSION_4_8_OR_LESS
 		
 		// Uncomment if you are using online features
 		// PrivateDependencyModuleNames.Add("OnlineSubsystem");
